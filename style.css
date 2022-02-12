@@ -52,23 +52,47 @@ margin:2px;
 display:flex;
 justify-content: center;
 align-items: center;
-
+font-size:30px;
 }
 
 .green-overlay{
- background-color:green !important;
+ background-color:#538d4e !important;
  color:#111 !important;
+ border:none !important;
+ transform: rotateX(90);
+ transition: ease 1s;
+
 }
 
 .yellow-overlay{
-background-color:yellow !important;
+background-color:#b59f3b !important;
 color:#111 !important;
+border:none !important;
+ transform: rotateX(90);
+ transition: ease 1s;
 }
+
 
 .wrong-overlay{
-background-color:black !important;
+background-color:#3a3a3c !important;
+border:none !important;
+ transform: rotateX(90);
+ transition: ease 1s;
 }
 
+.green-overlay-keyboard{
+ background-color:#538d4e !important;
+
+}
+
+.yellow-overlay-keyboard{
+background-color:#b59f3b !important;
+}
+
+
+.wrong-overlay-keyboard{
+background-color:#3a3a3c !important;
+}
 
 .key-container{
 	width:510px;

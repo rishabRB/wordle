@@ -32,11 +32,13 @@ let currentTile=0;
 let isGameOver=false
 
 //handling key press
+let guessWord=guessRows[currentRow].join("")
 const handleClick=(letter)=>{
 	if(letter === 'CLEAR')
 	deleteLetter()
 	else if(letter === 'ENTER'){
-	checkWord(guessRows[currentRow].join(""))
+	filpTile()
+	checkWord(guessWord)
 	}
 	else
 	addLetter(letter)
@@ -46,21 +48,18 @@ const handleClick=(letter)=>{
 //Checking word funtion
 
 const checkWord=(word)=>{
-fetch(`http://localhost:3000/check/?word=${word}`).then((res)=>res.json()).then(json=>{
-  console.log(json)
-  if(json == 'Entry word not found'){
+fetch(`http://localhost:3000/check/?word=${guessWord}`).then((res)=>res.json()).then(json=>{
+  if("Entry word not found"){
  showMessage("Word not found in list")
   }
   else{
 if(currentTile === 5 ){
 	    if(word == wordle){
-		filpTile()
 		showMessage('Magnificent !')
 	    isGameOver=true
 	    return 
 		}
 	else{
-	filpTile()
 	//checking if it last row
 	if(currentRow >= 5){
 	isGameOver=false
@@ -86,11 +85,9 @@ const showMessage=(message)=>{
 const messageElement=document.createElement('p')
 messageElement.textContent=message
 messageDisplay.append(messageElement)
-if(message !== 'Magnificent !'){
 setTimeout(()=>{
 messageDisplay.removeChild(messageElement)
 },2000)
-}
 }
 
 
@@ -112,7 +109,7 @@ const rowTiles=document.querySelector('#guessRow-'+currentRow).childNodes
 		}
 		else{
 		tile.classList.add('wrong-overlay')
-        key.classList.add('wrong-overlay-keyboard')
+        key.classList.add('wrong-overlay-keyborad')
 		}
 	})
 
